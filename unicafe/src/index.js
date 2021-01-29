@@ -56,24 +56,26 @@ const Statistics = (props) => {
   if (allClicks > 0) {
     return (
       <table>
-        <tr>
-          <Statistic text="good" value ={props.good} />
-        </tr>
-        <tr>
-          <Statistic text="neutral" value ={props.neutral} />
-        </tr>
-        <tr>
-          <Statistic text="bad" value ={props.bad} />
-        </tr>
-        <tr>
-          <Statistic text="all" value ={allClicks} />
-        </tr>
-        <tr>
-          <Statistic text="average" value ={averageClicks} />
-        </tr>
-        <tr>
-          <Statistic text="positive" value ={positiveClicks + " %"} />
-        </tr>
+        <tbody>
+          <tr>
+            <Statistic text="good" value ={props.good} />
+          </tr>
+          <tr>
+            <Statistic text="neutral" value ={props.neutral} />
+          </tr>
+          <tr>
+            <Statistic text="bad" value ={props.bad} />
+          </tr>
+          <tr>
+            <Statistic text="all" value ={allClicks} />
+          </tr>
+          <tr>
+            <Statistic text="average" value ={averageClicks} />
+          </tr>
+          <tr>
+            <Statistic text="positive" value ={positiveClicks + " %"} />
+          </tr>
+        </tbody>
       </table>
     )
   }
