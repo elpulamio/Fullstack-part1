@@ -19,6 +19,10 @@ const App = () => {
     setBad(bad + 1)
   }
 
+  const allClicks = good + neutral + bad
+  const averageClicks = ((good * 1) + (neutral * 0) + (bad * -1)) / allClicks
+  const positiveClicks = good / allClicks * 100
+
   return (
     <div>
       <h1>give feedback</h1>
@@ -40,6 +44,12 @@ const App = () => {
         neutral {neutral}
         <br />
         bad {bad}
+        <br />
+        all {allClicks}
+        <br />
+        average {averageClicks}
+        <br />
+        positive {positiveClicks} %
       </div>
     </div>
   )
