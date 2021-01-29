@@ -1,27 +1,6 @@
 import React, { useState } from 'react'
 import ReactDOM from 'react-dom'
 
-const Statistics = (props) => {
-  return (
-    <div>
-      <h1>statistics</h1>
-      <div>
-        good {props.good}
-        <br />
-        neutral {props.neutral}
-        <br />
-        bad {props.bad}
-        <br />
-        all {props.allClicks}
-        <br />
-        average {props.averageClicks}
-        <br />
-        positive {props.positiveClicks} %
-      </div>
-    </div>
-  )  
-}
-
 const App = () => {
   const [good, setGood] = useState(0)
   const [neutral, setNeutral] = useState(0)
@@ -36,20 +15,57 @@ const App = () => {
   return (
     <div>
       <h1>give feedback</h1>
-      <div>
-        <button onClick={handleClickGood}>
-          good
-        </button>
-        <button onClick={handleClickNeutral}>
-          neutral
-        </button>
-        <button onClick={handleClickBad}>
-          bad
-        </button>
-      </div>
+      <Button handleClickGood={handleClickGood} handleClickNeutral={handleClickNeutral} handleClickBad={handleClickBad}/>
+      <h1>statistics</h1>
       <Statistics good={good} neutral={neutral} bad={bad} allClicks={allClicks} averageClicks={averageClicks} positiveClicks={positiveClicks}/>
     </div>
   )
+}
+
+const Button = (props) => {
+  return (
+    <div>
+      <button onClick={props.handleClickGood}>
+        good
+      </button>
+      <button onClick={props.handleClickNeutral}>
+        neutral
+      </button>
+      <button onClick={props.handleClickBad}>
+        bad
+      </button>
+    </div>
+  )
+}
+
+const Statistic = (props) => {
+  return (
+    <div>
+      {props.text} {props.value}
+    </div>
+  )
+}
+
+const Statistics = (props) => {
+  if (props.allClicks > 0) {
+    return (
+      <div>
+        <Statistic text="good" value ={props.good} />
+        <Statistic text="neutral" value ={props.neutral} />
+        <Statistic text="bad" value ={props.bad} />
+        <Statistic text="all" value ={props.allClicks} />
+        <Statistic text="average" value ={props.averageClicks} />
+        <Statistic text="positive" value ={props.positiveClicks + " %"} />
+      </div>
+    )
+  }
+  else {
+    return (
+      <div>
+        no feedback given
+      </div>
+    )
+  }  
 }
 
 ReactDOM.render(<App />, 
