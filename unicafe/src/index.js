@@ -37,27 +37,44 @@ const Button = (props) => {
 
 const Statistic = (props) => {
   return (
-    <div>
-      {props.text} {props.value}
-    </div>
+    <>
+      <td>
+        {props.text}
+      </td>
+      <td>
+        {props.value}
+      </td>
+    </>
   )
 }
 
 const Statistics = (props) => {
   const allClicks = props.good + props.neutral + props.bad
-  const averageClicks = ((props.good * 1) + (props.neutral * 0) + (props.bad * -1)) / allClicks
-  const positiveClicks = props.good / allClicks * 100
+  const averageClicks = (((props.good * 1) + (props.neutral * 0) + (props.bad * -1)) / allClicks).toFixed(2)
+  const positiveClicks = (props.good / allClicks * 100).toFixed(2)
 
   if (allClicks > 0) {
     return (
-      <div>
-        <Statistic text="good" value ={props.good} />
-        <Statistic text="neutral" value ={props.neutral} />
-        <Statistic text="bad" value ={props.bad} />
-        <Statistic text="all" value ={allClicks} />
-        <Statistic text="average" value ={averageClicks} />
-        <Statistic text="positive" value ={positiveClicks + " %"} />
-      </div>
+      <table>
+        <tr>
+          <Statistic text="good" value ={props.good} />
+        </tr>
+        <tr>
+          <Statistic text="neutral" value ={props.neutral} />
+        </tr>
+        <tr>
+          <Statistic text="bad" value ={props.bad} />
+        </tr>
+        <tr>
+          <Statistic text="all" value ={allClicks} />
+        </tr>
+        <tr>
+          <Statistic text="average" value ={averageClicks} />
+        </tr>
+        <tr>
+          <Statistic text="positive" value ={positiveClicks + " %"} />
+        </tr>
+      </table>
     )
   }
   else {
