@@ -35,22 +35,37 @@ const App = (props) => {
       copy: selected.copy
     }
     setSelected(newSelects)
-  } 
-   
+  }
+
+  let votes = 0
+  const maxVotes = () => {
+    votes = anecdotesCopy[anecdotesCopy.indexOf(Math.max(...anecdotesCopy))]
+    if (votes > 0){
+      return (
+        <>
+          <br />
+          <h1>Anecdote with most votes</h1>
+          <p>
+            {anecdotes[anecdotesCopy.indexOf(Math.max(...anecdotesCopy))]}
+            <br /><br />
+            Has {votes} votes
+          </p>
+        </>
+      )
+    }
+  }
+     
   return (
     <div>
       <h1>Anecdote of the day</h1>
-      {props.anecdotes[selected.original]}
-      <br /><br />
+      <p>
+        {props.anecdotes[selected.original]}
+        <br /><br />
         Has {props.anecdotesCopy[selected.copy]} votes
-      <br />
+      </p>
       <Button onClick={handleVote} text='Vote' />
       <Button onClick={handleClick} text='Next anecdote' />
-      <br />
-      <h1>Anecdote with most votes</h1>
-      {props.anecdotes[props.anecdotesCopy.indexOf(Math.max(...props.anecdotesCopy))]}
-      <br />
-        Has {props.anecdotesCopy[props.anecdotesCopy.indexOf(Math.max(...props.anecdotesCopy))]} votes
+      {maxVotes()}
     </div>
   )
 }
